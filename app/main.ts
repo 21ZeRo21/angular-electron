@@ -1,4 +1,4 @@
-import {app, BrowserWindow, screen} from 'electron';
+import {app, BrowserWindow, screen, ipcMain} from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 
@@ -49,6 +49,10 @@ function createWindow(): BrowserWindow {
     // when you should delete the corresponding element.
     win = null;
   });
+
+  ipcMain.handle('get-users', async (event, ...args) => {
+    return ['User1', 'User2']
+  })
 
   return win;
 }
